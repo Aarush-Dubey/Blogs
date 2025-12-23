@@ -1,0 +1,9 @@
+title: Aarush's Notes
+description: First-principles thinking across ML
+theme: minima
+
+markdown: kramdown
+kramdown:
+  math_engine: mathjax
+
+permalink: /:categories/:title/
