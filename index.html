@@ -3,22 +3,27 @@ layout: null
 ---
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Aarush's Notes | A Journey into Intelligence</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Space+Grotesk:wght@300;500;700&display=swap"
+        rel="stylesheet">
     <style>
         :root {
-            --bg-color: #0a0a0c;
-            --card-bg: rgba(255, 255, 255, 0.03);
-            --card-border: rgba(255, 255, 255, 0.08);
-            --text-primary: #ffffff;
-            --text-secondary: #a1a1aa;
-            --accent-gradient: linear-gradient(135deg, #FF3BFF 0%, #ECBFBF 50%, #5C24FF 100%);
-            --glass-shine: linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0) 100%);
+            --bg-color: #050505;
+            --text-color: #e0e0e0;
+            --accent-primary: #00ffcc;
+            --accent-secondary: #ff00ff;
+            --glass-bg: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --grid-line: rgba(255, 255, 255, 0.03);
+            --font-display: 'Orbitron', sans-serif;
+            --font-body: 'Space Grotesk', sans-serif;
         }
 
         * {
@@ -29,102 +34,123 @@ layout: null
 
         body {
             background-color: var(--bg-color);
-            color: var(--text-primary);
-            font-family: 'Inter', sans-serif;
+            color: var(--text-color);
+            font-family: var(--font-body);
             line-height: 1.6;
-            overflow-x: hidden;
             min-height: 100vh;
+            overflow-x: hidden;
+            background-image:
+                linear-gradient(var(--grid-line) 1px, transparent 1px),
+                linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+            background-size: 40px 40px;
         }
 
-        /* Subtle Background Animation */
-        body::before {
-            content: '';
+        /* Scanline Effect */
+        body::after {
+            content: " ";
+            display: block;
             position: fixed;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle at 50% 50%, rgba(92, 36, 255, 0.08), transparent 60%);
-            animation: pulse 15s ease-in-out infinite;
-            z-index: -1;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+            z-index: 10;
+            background-size: 100% 2px, 3px 100%;
             pointer-events: none;
         }
 
-        @keyframes pulse {
-            0% { transform: scale(1); opacity: 0.5; }
-            50% { transform: scale(1.1); opacity: 0.8; }
-            100% { transform: scale(1); opacity: 0.5; }
-        }
-
         .container {
-            max-width: 900px;
+            max-width: 1200px;
             margin: 0 auto;
             padding: 4rem 2rem;
+            position: relative;
+            z-index: 1;
         }
 
-        /* Hero Section */
+        /* Hero */
         header {
-            margin-bottom: 6rem;
-            text-align: center;
+            margin-bottom: 8rem;
+            text-align: left;
+            border-bottom: 1px solid var(--glass-border);
+            padding-bottom: 2rem;
             position: relative;
+        }
+
+        header::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            width: 100px;
+            height: 1px;
+            background: var(--accent-primary);
+            box-shadow: 0 0 10px var(--accent-primary);
         }
 
         h1 {
-            font-size: 4rem;
-            font-weight: 800;
-            letter-spacing: -0.05em;
+            font-family: var(--font-display);
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            line-height: 1;
             margin-bottom: 1rem;
-            background: var(--accent-gradient);
+            background: linear-gradient(90deg, #fff, var(--accent-primary));
             -webkit-background-clip: text;
+            background-clip: text;
             -webkit-text-fill-color: transparent;
-            display: inline-block;
+            text-shadow: 0 0 20px rgba(0, 255, 204, 0.3);
         }
 
         .tagline {
-            color: var(--text-secondary);
             font-size: 1.25rem;
-            font-weight: 300;
             max-width: 600px;
-            margin: 0 auto;
+            color: rgba(255, 255, 255, 0.6);
+            letter-spacing: 0.5px;
         }
 
-        /* Section Headers */
-        h2 {
+        /* Grid Layout */
+        .category-section {
+            margin-bottom: 6rem;
+        }
+
+        .category-title {
+            font-family: var(--font-display);
             font-size: 1.5rem;
-            margin: 4rem 0 2rem;
-            font-weight: 600;
+            color: var(--accent-secondary);
+            margin-bottom: 2rem;
             display: flex;
             align-items: center;
-            color: var(--text-primary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
-        h2::after {
-            content: '';
-            flex: 1;
-            height: 1px;
-            background: var(--card-border);
-            margin-left: 1.5rem;
+        .category-title::before {
+            content: '//';
+            margin-right: 1rem;
+            color: rgba(255, 255, 255, 0.3);
         }
 
-        /* Grid */
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
             gap: 2rem;
         }
 
-        /* Card */
+        /* Futuristic Card */
         .card {
-            background: var(--card-bg);
-            border: 1px solid var(--card-border);
-            border-radius: 16px;
+            background: rgba(10, 10, 10, 0.6);
+            border: 1px solid var(--glass-border);
             padding: 2rem;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            text-decoration: none;
+            transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
-            text-decoration: none;
-            display: block;
-            backdrop-filter: blur(10px);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 250px;
         }
 
         .card::before {
@@ -132,98 +158,107 @@ layout: null
             position: absolute;
             top: 0;
             left: 0;
-            width: 100%;
-            height: 100%;
-            background: var(--glass-shine);
-            opacity: 0;
-            transition: opacity 0.4s ease;
+            width: 2px;
+            height: 0;
+            background: var(--accent-secondary);
+            transition: height 0.3s ease;
         }
 
         .card:hover {
-            transform: translateY(-8px) scale(1.02);
-            border-color: rgba(255, 255, 255, 0.2);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+            background: rgba(20, 20, 20, 0.8);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            border-color: rgba(255, 0, 255, 0.3);
         }
 
         .card:hover::before {
-            opacity: 1;
+            height: 100%;
         }
 
-        .card-category {
-            font-family: 'JetBrains Mono', monospace;
+        .card-meta {
+            font-family: var(--font-display);
             font-size: 0.75rem;
-            color: var(--text-secondary);
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
+            color: var(--accent-primary);
             margin-bottom: 1rem;
-            display: block;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
         .card-title {
-            font-size: 1.5rem;
+            font-size: 1.75rem;
+            margin-bottom: 1rem;
+            color: #fff;
             font-weight: 700;
-            margin-bottom: 0.75rem;
-            color: var(--text-primary);
-            line-height: 1.3;
+            line-height: 1.2;
         }
 
         .card-excerpt {
-            color: var(--text-secondary);
+            color: rgba(255, 255, 255, 0.6);
             font-size: 0.95rem;
-            line-height: 1.6;
         }
 
-        /* Footer */
+        .read-more {
+            margin-top: 1.5rem;
+            font-size: 0.875rem;
+            color: var(--accent-secondary);
+            font-weight: 700;
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+        }
+
+        .read-more::after {
+            content: '->';
+            margin-left: 0.5rem;
+            transition: margin-left 0.3s;
+        }
+
+        .card:hover .read-more::after {
+            margin-left: 1rem;
+        }
+
         footer {
             margin-top: 8rem;
+            border-top: 1px solid var(--glass-border);
+            padding-top: 2rem;
             text-align: center;
-            color: var(--text-secondary);
+            font-family: var(--font-display);
             font-size: 0.875rem;
-            opacity: 0.6;
+            color: rgba(255, 255, 255, 0.4);
         }
-
-        /* Simple Loading Animation */
-        .fade-in {
-            animation: fadeIn 0.8s ease-out forwards;
-            opacity: 0;
-            transform: translateY(20px);
-        }
-
-        @keyframes fadeIn {
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .delay-1 { animation-delay: 0.1s; }
-        .delay-2 { animation-delay: 0.2s; }
-        .delay-3 { animation-delay: 0.3s; }
-
     </style>
 </head>
+
 <body>
 
-<div class="container">
-    <header class="fade-in">
-        <h1>First Principles.</h1>
-        <p class="tagline">A collection of notes on Machine Learning, Mathematics, and Systems. Deconstructing complexity into its atomic units.</p>
-    </header>
+    <div class="container">
+        <header>
+            <h1>Aarush's<br>Notes</h1>
+            <p class="tagline">First Principles thinking aimed at Machine Intelligence. <br>Decompiled for human
+                consumption.</p>
+        </header>
 
-    <div class="fade-in delay-1">
-        <h2>Latest Notes</h2>
-        <div class="grid">
-            {% for post in site.posts %}
-            <a href="{{ post.url }}" class="card">
-                <span class="card-category">{{ post.categories | join: ' • ' }}</span>
-                <div class="card-title">{{ post.title }}</div>
-                <div class="card-excerpt">{{ post.excerpt | strip_html | truncatewords: 20 }}</div>
-            </a>
-            {% endfor %}
+        <div class="category-section">
+            <h2 class="category-title">Transmission Log</h2>
+            <div class="grid">
+                {% for post in site.posts %}
+                <a href="{{ post.url }}" class="card">
+                    <div>
+                        <div class="card-meta">{{ post.date | date: "%Y.%m.%d" }} • {{ post.categories | first }}</div>
+                        <div class="card-title">{{ post.title }}</div>
+                        <div class="card-excerpt">{{ post.excerpt | strip_html | truncatewords: 25 }}</div>
+                    </div>
+                    <div class="read-more">Access Data</div>
+                </a>
+                {% endfor %}
+            </div>
         </div>
+
+        <footer>
+            <p>SYSTEM STATUS: ONLINE. © {{ site.time | date: '%Y' }}</p>
+        </footer>
     </div>
 
-    <footer>
-        <p>&copy; {{ site.time | date: '%Y' }} Aarush Dubey. Built with curiosity.</p>
-    </footer>
-</div>
-
 </body>
+
 </html>

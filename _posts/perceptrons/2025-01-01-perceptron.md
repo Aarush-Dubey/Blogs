@@ -70,6 +70,8 @@ The study of Phase 1 concludes with two profound realizations:
 
 Here is a C++ implementation of the Perceptron algorithm demonstrating convergence on the AND date and failure on the XOR gate.
 
+
+{% raw %}
 ```cpp
 #include <iostream>
 #include <vector>
@@ -127,3 +129,5 @@ int main(){
     return 0;
 }
 ```
+{% endraw %}
+
