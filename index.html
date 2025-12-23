@@ -1,265 +1,96 @@
 ---
-layout: null
+layout: default
 ---
-<!DOCTYPE html>
-<html lang="en">
+<style>
+    /* Local overrides for the index page specifically if needed, 
+       but relying on main.scss global styles is better for consistency. 
+       We will use inline styles here for specific layout needs of the landing page.
+    */
+    .hero {
+        padding: 6rem 0;
+        border-bottom: 2px solid #000;
+        margin-bottom: 4rem;
+    }
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aarush's Notes | A Journey into Intelligence</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Space+Grotesk:wght@300;500;700&display=swap"
-        rel="stylesheet">
-    <style>
-        :root {
-            --bg-color: #050505;
-            --text-color: #e0e0e0;
-            --accent-primary: #00ffcc;
-            --accent-secondary: #ff00ff;
-            --glass-bg: rgba(255, 255, 255, 0.05);
-            --glass-border: rgba(255, 255, 255, 0.1);
-            --grid-line: rgba(255, 255, 255, 0.03);
-            --font-display: 'Orbitron', sans-serif;
-            --font-body: 'Space Grotesk', sans-serif;
-        }
+    .hero-title {
+        font-family: 'Playfair Display', serif;
+        font-size: 5rem;
+        font-weight: 900;
+        line-height: 0.9;
+        margin-bottom: 1rem;
+    }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+    .hero-subtitle {
+        font-family: 'Inter', sans-serif;
+        font-size: 1.2rem;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        opacity: 0.7;
+    }
 
-        body {
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            font-family: var(--font-body);
-            line-height: 1.6;
-            min-height: 100vh;
-            overflow-x: hidden;
-            background-image:
-                linear-gradient(var(--grid-line) 1px, transparent 1px),
-                linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
-            background-size: 40px 40px;
-        }
+    .posts-grid {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 0;
+        border: 2px solid #000;
+    }
 
-        /* Scanline Effect */
-        body::after {
-            content: " ";
-            display: block;
-            position: fixed;
-            top: 0;
-            left: 0;
-            bottom: 0;
-            right: 0;
-            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
-            z-index: 10;
-            background-size: 100% 2px, 3px 100%;
-            pointer-events: none;
-        }
+    .post-card {
+        padding: 3rem;
+        border-bottom: 1px solid #000;
+        transition: background 0.2s;
+        text-decoration: none;
+        color: #000;
+        display: block;
+    }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 4rem 2rem;
-            position: relative;
-            z-index: 1;
-        }
+    .post-card:last-child {
+        border-bottom: none;
+    }
 
-        /* Hero */
-        header {
-            margin-bottom: 8rem;
-            text-align: left;
-            border-bottom: 1px solid var(--glass-border);
-            padding-bottom: 2rem;
-            position: relative;
-        }
+    .post-card:hover {
+        background-color: #fff;
+    }
 
-        header::after {
-            content: '';
-            position: absolute;
-            bottom: -1px;
-            left: 0;
-            width: 100px;
-            height: 1px;
-            background: var(--accent-primary);
-            box-shadow: 0 0 10px var(--accent-primary);
-        }
+    .post-meta {
+        font-family: 'Inter', sans-serif;
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        border: 1px solid #000;
+        display: inline-block;
+        padding: 0.2rem 0.5rem;
+        margin-bottom: 1rem;
+        background: #fff;
+    }
 
-        h1 {
-            font-family: var(--font-display);
-            font-size: clamp(3rem, 8vw, 6rem);
-            font-weight: 900;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            line-height: 1;
-            margin-bottom: 1rem;
-            background: linear-gradient(90deg, #fff, var(--accent-primary));
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-shadow: 0 0 20px rgba(0, 255, 204, 0.3);
-        }
+    .post-title {
+        font-family: 'Playfair Display', serif;
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+        line-height: 1.1;
+    }
 
-        .tagline {
-            font-size: 1.25rem;
-            max-width: 600px;
-            color: rgba(255, 255, 255, 0.6);
-            letter-spacing: 0.5px;
-        }
+    .post-excerpt {
+        font-family: 'Inter', sans-serif;
+        font-size: 1.1rem;
+        line-height: 1.6;
+        color: #444;
+        max-width: 600px;
+    }
+</style>
 
-        /* Grid Layout */
-        .category-section {
-            margin-bottom: 6rem;
-        }
+<div class="hero">
+    <h1 class="hero-title">First<br>Principles.</h1>
+    <p class="hero-subtitle">Deconstructing Machine Intelligence.</p>
+</div>
 
-        .category-title {
-            font-family: var(--font-display);
-            font-size: 1.5rem;
-            color: var(--accent-secondary);
-            margin-bottom: 2rem;
-            display: flex;
-            align-items: center;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .category-title::before {
-            content: '//';
-            margin-right: 1rem;
-            color: rgba(255, 255, 255, 0.3);
-        }
-
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-            gap: 2rem;
-        }
-
-        /* Futuristic Card */
-        .card {
-            background: rgba(10, 10, 10, 0.6);
-            border: 1px solid var(--glass-border);
-            padding: 2rem;
-            text-decoration: none;
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            min-height: 250px;
-        }
-
-        .card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 2px;
-            height: 0;
-            background: var(--accent-secondary);
-            transition: height 0.3s ease;
-        }
-
-        .card:hover {
-            background: rgba(20, 20, 20, 0.8);
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-            border-color: rgba(255, 0, 255, 0.3);
-        }
-
-        .card:hover::before {
-            height: 100%;
-        }
-
-        .card-meta {
-            font-family: var(--font-display);
-            font-size: 0.75rem;
-            color: var(--accent-primary);
-            margin-bottom: 1rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .card-title {
-            font-size: 1.75rem;
-            margin-bottom: 1rem;
-            color: #fff;
-            font-weight: 700;
-            line-height: 1.2;
-        }
-
-        .card-excerpt {
-            color: rgba(255, 255, 255, 0.6);
-            font-size: 0.95rem;
-        }
-
-        .read-more {
-            margin-top: 1.5rem;
-            font-size: 0.875rem;
-            color: var(--accent-secondary);
-            font-weight: 700;
-            text-transform: uppercase;
-            display: flex;
-            align-items: center;
-        }
-
-        .read-more::after {
-            content: '->';
-            margin-left: 0.5rem;
-            transition: margin-left 0.3s;
-        }
-
-        .card:hover .read-more::after {
-            margin-left: 1rem;
-        }
-
-        footer {
-            margin-top: 8rem;
-            border-top: 1px solid var(--glass-border);
-            padding-top: 2rem;
-            text-align: center;
-            font-family: var(--font-display);
-            font-size: 0.875rem;
-            color: rgba(255, 255, 255, 0.4);
-        }
-    </style>
-</head>
-
-<body>
-
-    <div class="container">
-        <header>
-            <h1>Aarush's<br>Notes</h1>
-            <p class="tagline">First Principles thinking aimed at Machine Intelligence. <br>Decompiled for human
-                consumption.</p>
-        </header>
-
-        <div class="category-section">
-            <h2 class="category-title">Transmission Log</h2>
-            <div class="grid">
-                {% for post in site.posts %}
-
-                <a href="{{ post.url | relative_url }}" class="card">
-                    <div>
-                        <div class="card-meta">{{ post.date | date: "%Y.%m.%d" }} • {{ post.categories | first }}</div>
-                        <div class="card-title">{{ post.title }}</div>
-                        <div class="card-excerpt">{{ post.excerpt | strip_html | truncatewords: 25 }}</div>
-                    </div>
-                    <div class="read-more">Access Data</div>
-                </a>
-                {% endfor %}
-            </div>
-        </div>
-
-        <footer>
-            <p>SYSTEM STATUS: ONLINE. © {{ site.time | date: '%Y' }}</p>
-        </footer>
-    </div>
-
-</body>
-
-</html>
+<div class="posts-grid">
+    {% for post in site.posts %}
+    <a href="{{ post.url | relative_url }}" class="post-card">
+        <span class="post-meta">{{ post.date | date: "%B %d, %Y" }} • {{ post.categories | first }}</span>
+        <h2 class="post-title">{{ post.title }}</h2>
+        <p class="post-excerpt">{{ post.excerpt | strip_html | truncatewords: 30 }}</p>
+    </a>
+    {% endfor %}
+</div>

@@ -1,0 +1,79 @@
+---
+# Only the main Sass file needs front matter (the dashes are enough)
+---
+@import "minima";
+
+/* Elegant Brutalist Overrides */
+:root {
+  --base-font-family: 'Inter', Helvetica, Arial, sans-serif;
+  --heading-font-family: 'Playfair Display', serif;
+  --brand-color: #ff3300; /* International Orange */
+  --bg-color: #f7f7f7;
+  --text-color: #111;
+  --border-color: #000;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-family: var(--base-font-family);
+  border-top: 5px solid var(--brand-color);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--heading-font-family);
+  font-weight: 700;
+  color: #000;
+  letter-spacing: -0.5px;
+}
+
+.site-header {
+  border-bottom: 2px solid #000;
+  background-color: #fff;
+  padding: 2rem 0;
+}
+
+.site-title {
+  font-family: var(--heading-font-family);
+  font-size: 2.5rem;
+  font-weight: 900;
+  color: #000 !important;
+  letter-spacing: -1px;
+}
+
+.post-link {
+    font-family: var(--heading-font-family);
+    font-size: 1.8rem;
+    color: #000 !important;
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 4px;
+}
+
+.post-link:hover {
+    background-color: var(--brand-color);
+    color: #fff !important;
+    text-decoration: none;
+}
+
+.wrapper {
+    max-width: 900px;
+}
+
+/* Make images and code blocks stark */
+img {
+    border: 1px solid #000;
+    filter: grayscale(100%);
+    transition: filter 0.3s;
+}
+
+img:hover {
+    filter: none;
+}
+
+pre, code {
+    background-color: #e5e5e5;
+    border: 1px solid #000;
+    border-radius: 0;
+    font-family: 'JetBrains Mono', monospace;
+}
