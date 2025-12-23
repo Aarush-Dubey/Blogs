@@ -44,7 +44,7 @@ This is the mathematical realization of the biological "spiking" threshold. The 
 ### The Learning Mechanics: Stochastic Self-Correction
 
 The true relevance of the Perceptron lies in its **Update Rule**. Before this, "learning" meant a human manually changing the code. Rosenblatt’s rule allowed the machine to adjust its own parameters based on an objective measure of error.
-
+ly.
 When an input is processed, we compare the prediction $\hat{y}$ to the target $y$. The learning happens through a iterative nudge:
 
 $$
