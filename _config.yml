@@ -6,4 +6,7 @@ markdown: kramdown
 kramdown:
   math_engine: mathjax
 
+
 permalink: /:categories/:title/
+url: "https://aarush-dubey.github.io"
+baseurl: "/Blogs"
