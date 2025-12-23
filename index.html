@@ -242,7 +242,8 @@ layout: null
             <h2 class="category-title">Transmission Log</h2>
             <div class="grid">
                 {% for post in site.posts %}
-                <a href="{{ post.url }}" class="card">
+
+                <a href="{{ post.url | relative_url }}" class="card">
                     <div>
                         <div class="card-meta">{{ post.date | date: "%Y.%m.%d" }} • {{ post.categories | first }}</div>
                         <div class="card-title">{{ post.title }}</div>
