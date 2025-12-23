@@ -2,6 +2,11 @@
 title: "The Primacy of the Perceptron: Why We Begin at the Foundation"
 ---
 
+
+<script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
 ### The Primacy of the Perceptron: Why we Begin at the Foundation
 
 We do not study the Perceptron because it is powerful; we study it because it is the **First Principle** of all modern intelligence. Every Large Language Model, every autonomous vehicle, and every computer vision system is, at its molecular level, a massive collection of Perceptrons. To ignore Phase 1 is to build a skyscraper without understanding the physics of a single brick.
@@ -61,4 +66,64 @@ The study of Phase 1 concludes with two profound realizations:
 
 ---
 
+### Implementation
 
+Here is a C++ implementation of the Perceptron algorithm demonstrating convergence on the AND date and failure on the XOR gate.
+
+```cpp
+#include <iostream>
+#include <vector>
+#include <numeric>
+#include <random>
+
+class Perceptron {
+    std::vector<double> weights;
+    double bais;
+    double learning_rate;
+    int epochs;
+public:
+ Perceptron(double lr , int epochs) : learning_rate(lr) , epochs(epochs) {
+        std::default_random_engine generator;
+        std::uniform_real_distribution<double> distribution(-1.0, 1.0);
+        weights = {distribution(generator) , distribution(generator)};
+        bais = distribution(generator);
+    }
+    int predict(const std::vector<double>& inputs){
+        double sum = bais ;
+        for(int i=0;i<weights.size() ; i++){
+            sum += weights[i]*inputs[i];
+        }
+        return (sum>0)?1:0;
+    }
+
+    void train(std::vector<std::vector<double>> inputs , std::vector<int> labels){
+        for(int i=0;i<epochs;i++){
+            int total_error = 0;
+            for(size_t i=0 ; i<inputs.size() ; i++){
+                int prediction = predict(inputs[i]);
+                int error = labels[i] - prediction;
+                total_error += std::abs(error);
+                for(int j=0;j<weights.size();j++){
+                    weights[j] += learning_rate*error*inputs[i][j];
+                }
+                bais += learning_rate*error;
+            }
+            if(total_error==0){
+                std::cout << "SUCCESS: Converged at epoch " << i << std::endl;
+                return;
+            }
+        }
+        std::cout << "WARNING: Failed to converge after " << epochs << " epochs." << std::endl;
+    }
+};
+
+int main(){
+    std::vector<std::vector<double>> inputs = {{0,0}, {0,1}, {1,0}, {1,1}};
+    std::vector<int> labels = {0, 0, 0, 1}; // AND gate
+    std::vector<int> label_xor = {0, 1, 1, 0}; // XOR gate
+    Perceptron p(0.1, 300);
+    p.train(inputs, labels);  // Converges 
+    p.train(inputs, label_xor); // Does not converge
+    return 0;
+}
+```
